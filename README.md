@@ -125,8 +125,8 @@ rt_display_name                     | routeable-0             | Name of the rout
 ##### Security Lists
 name                                | default                 | description
 ------------------------------------|-------------------------|------------
-sl_worker_name                      |                         | Name of the worker security list
-sl_lbr_name                         |                         | Name of the lbr security list
+sl_worker_name                      | sl_lbrs                 | Name of the worker security list
+sl_lbr_name                         | sl_workers              | Name of the lbr security list
 
 
 

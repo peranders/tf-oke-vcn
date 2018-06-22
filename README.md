@@ -80,7 +80,7 @@ export TF_VAR_region="<Replace with your region name, e.g: eu-frankfurt-1>"
 
 #### Optional Input Variables:
 The configuration has a lot of default values that you can customize. Open terraform.tfvars and comment out any lines with values you would like to chabnge.  
-If no values are changed you will configure your network according to the values shown in the figure above. 
+If no values are changed you will configure your network according to the values shown below. 
 
 ##### VCN parameters 
 name                                | default                 | description
@@ -152,4 +152,8 @@ Use Terraform to Provision k8s network resources on OCI:
 $ terraform apply
 ```
 
+If no resources exists you should see the script finishing with something like this:
+```
+Apply complete! Resources: 10 added, 0 changed, 0 destroyed.
+```
 

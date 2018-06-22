@@ -7,21 +7,17 @@
 [oke]: https://docs.cloud.oracle.com/iaas/Content/ContEng/Concepts/contengoverview.htm
 [oke_vcn]: https://docs.cloud.oracle.com/iaas/Content/ContEng/Concepts/contengnetworkconfig.htm
 [oke_vcn_sample]: https://docs.cloud.oracle.com/iaas/Content/ContEng/Concepts/contengnetworkconfigexample.htm
-
+[oci_keys_and_ocid]: https://docs.cloud.oracle.com/iaas/Content/API/Concepts/apisigningkey.htm
 
 
 
 # Terraform Installer for Network configuration required by Oracle Container Engine for Kubernetes (OKE)
 ## About
 
-Oracle Cloud Infrastructure Container Engine for Kubernetes is a fully-managed, scalable, and highly available service that you can use to deploy your containerized applications to the cloud. Use Container Engine for Kubernetes (sometimes abbreviated to just [OKE][oke]).  
+Oracle Cloud Infrastructure Container Engine for Kubernetes is a fully-managed, scalable, and highly available service that you can use to deploy your containerized applications to the cloud (sometimes abbreviated to just [OKE][oke]).  
 
-This terraform installer takes care of the network configuration required by OKE to host your Kubernetes worker nodes and Loadbalancers. This network configuration is in accordance with the sample network configuration provided by the OKE documentation. 
+OKE lets you spin up a new Kubernetes cluster in a couple of minutes, but before you do that you need to create a network configuration to host your worker nodes. This terraform installer takes care of the network configuration required by OKE to host your Kubernetes worker nodes and Loadbalancers on [Oracle Cloud Infrastructure][oci] (OCI). This network configuration is in accordance with the sample network configuration provided by the OKE documentation. 
 
-
-The Kubernetes Installer for Oracle Cloud Infrastructure provides a Terraform-based Kubernetes installation for Oracle 
-Cloud Infrastructure. It consists of a set of [Terraform][terraform] modules and an example base configuration that is 
-used to provision and configure the resources needed to run a highly available and configurable Kubernetes cluster on [Oracle Cloud Infrastructure][oci] (OCI).
 
 
 ## Network Overview
@@ -34,11 +30,11 @@ Terraform is used to _provision_ the virtual cloud network and all required reso
 - The VCN must have five subnets defined. 
 - The VCN must have security lists defined for the worker node subnets and the load balancer subnets. 
 
-The OKE documentation also refers to a [network config with sample values][oke_vcn_sample], and this provider are using the values from this example, but you can change it using your own names and values.
+The OKE documentation also refers to a [oke_vcn_sample][network config with sample values], and this provider are using the values from this example, but you can change it using your own names and values.
 
 
 
-![test](./images/oke_network.jpeg)
+![](./images/oke_network.jpg)
 
 ## Prerequisites
 
@@ -50,7 +46,6 @@ providers {
   oci = "<path_to_provider_binary>/terraform-provider-oci"
 }
 ```
-4.  Ensure you have [Kubectl][Kubectl] installed if you plan to interact with the cluster locally
 
 
 
@@ -58,14 +53,11 @@ providers {
 
 ### Customize the configuration
 
-Override any default values 
-
-Open the terraform.tfvars file and set the mandatory input variables.  You can also set the optional values by commenting out the variable and provide your own values. 
+The configuration is separated in two files. One for Mandatory Input variables and another one for optional variables further details described below.
 
 
 #### Mandatory Input Variables:
-
-##### OCI Provider Configuration
+The first section in the terraform.tfvars file contains the mandatory variables you need to connecto to you oci instance.  Uncomment the lines and replace the values with your specific settings. Check the documentation for [Required Keys and OCID][oci_keys_and_ocid] for how to obtain the necessary values.
 
 name                                | default                 | description
 ------------------------------------|-------------------------|-----------------
@@ -76,7 +68,19 @@ fingerprint                         | None (required)         | Fingerprint of t
 private_key_path                    | None (required)         | Private key file path of the OCI user's private key
 region                              | None (required)         | String value of region to create resources
 
+Another option is to create your own script like _setocienv.sh_ to set the necessary terraform environment varaibles:
+```
+export TF_VAR_tenancy_ocid="<Replace with your oci tenancy OCID>"
+export TF_VAR_user_ocid="<Replace with your oci user OCID>"
+export TF_VAR_fingerprint="<Replace with your pem public key fingerprint>"
+export TF_VAR_private_key_path="<Replace with Path to your pem private key>"
+export TF_VAR_compartment_ocid="<Replace with your oci compartment OCID>"
+export TF_VAR_region="<Replace with your region name, e.g: eu-frankfurt-1>"
+```	
+
 #### Optional Input Variables:
+The configuration has a lot of default values that you can customize. Open terraform.tfvars and comment out any lines with values you would like to chabnge.  
+If no values are changed you will configure your network according to the values shown in the figure above. 
 
 ##### VCN parameters 
 name                                | default                 | description
@@ -126,8 +130,9 @@ sl_lbr_name                         |                         | Name of the lbr 
 
 
 
-
 ### Deploy the network
+
+Run the following terraform commands from the directory containing the terraform files.  
 
 Initialize Terraform:
 

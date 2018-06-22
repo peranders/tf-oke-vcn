@@ -1,3 +1,19 @@
+#########################################################################
+## Mandatory connection settings. 
+## Replace with your OCI account details. 
+#########################################################################
+
+#tenancy_ocid = "<Replace with your oci tenancy OCID>"
+#user_ocid = "<Replace with your oci user OCID>"
+#fingerprint = "<Replace with your pem public key fingerprint>"
+#private_key_path = "<Replace with Path to your pem private key>"
+#compartment_ocid = "<Replace with your oci compartment OCID>"
+#region = "<Replace with your region name, e.g: eu-frankfurt-1>"
+
+#########################################################################
+## Custom settings. 
+## Uncomment and change to your own values to override default settings. 
+#########################################################################
 
 
 ## VCN values

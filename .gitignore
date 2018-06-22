@@ -3,4 +3,8 @@ setocienv.sh
 
 .project
 
+/terraform.tfstate
+/secret_fra_env.sh
+/secret_lad_env.sh
+
 .terraform/plugins/darwin_amd64/lock.json

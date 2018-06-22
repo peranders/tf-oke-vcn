@@ -1,11 +1,3 @@
-# OCI account info
-# Replace with details for your OCI account: 
-#tenancy_ocid = "ocid1.tenancy.oc1...."
-#user_ocid = "ocid1.user.oc1......"
-#fingerprint = "<fingerprint for public key file>"
-#private_key_path = "<path to private pem file>"
-#compartment_ocid = "ocid1.compartment.oc1...."
-#region = "eu-frankfurt-1"
 
 
 ## VCN values

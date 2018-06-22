@@ -11,7 +11,7 @@
 
 
 
-# Terraform Installer for Network configuration required by Oracle Container Engine for Kubernetes (OKE)
+# Terraform script for Network configuration required by Oracle Container Engine for Kubernetes (OKE)
 ## About
 
 Oracle Cloud Infrastructure Container Engine for Kubernetes is a fully-managed, scalable, and highly available service that you can use to deploy your containerized applications to the cloud (sometimes abbreviated to just [OKE][oke]).  

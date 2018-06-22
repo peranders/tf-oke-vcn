@@ -30,7 +30,7 @@ Terraform is used to _provision_ the virtual cloud network and all required reso
 - The VCN must have five subnets defined. 
 - The VCN must have security lists defined for the worker node subnets and the load balancer subnets. 
 
-The OKE documentation also refers to a [oke_vcn_sample][network config with sample values], and this provider are using the values from this example, but you can change it using your own names and values.
+The OKE documentation also refers to a [network config with sample values][oke_vcn_sample], and this provider are using the values from this example, but you can change it using your own names and values.
 
 
 
